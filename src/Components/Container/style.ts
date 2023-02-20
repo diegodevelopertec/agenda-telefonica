@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 
@@ -85,7 +86,14 @@ type PropsStyle={
     mqH?:string,
     cursor?:string
 
-    
+    minW?:string,
+    minH?:string,
+    maxW?:string,
+    maxH?:string,
+    mqMxw?:string,
+    mqMxh?:string,
+    mqMnw?:string,
+    mqMnh?:string
 
 
 }
@@ -134,6 +142,11 @@ left: ${PropsStyle=>PropsStyle.psLeft};
 right: ${PropsStyle=>PropsStyle.psRight};
 bottom: ${PropsStyle=>PropsStyle.psBottom};
 
+min-width: ${PropsStyle=>PropsStyle.minW};
+min-height: ${PropsStyle=>PropsStyle.minH};
+max-width: ${PropsStyle=>PropsStyle.maxH};
+max-height: ${PropsStyle=>PropsStyle.maxW};
+
 
 &:hover{
     border:  ${PropsStyle=>PropsStyle.bdHover};
@@ -154,6 +167,11 @@ bottom: ${PropsStyle=>PropsStyle.psBottom};
     margin: ${PropsStyle=>PropsStyle.mqM};
     padding: ${PropsStyle=>PropsStyle.mqP};
     flex-direction: ${PropsStyle=>PropsStyle.mqDirection};
+    
+    min-width: ${PropsStyle=>PropsStyle.mqMnw};
+    min-height: ${PropsStyle=>PropsStyle.mqMnh};
+    max-width: ${PropsStyle=>PropsStyle.mqMxw};
+    max-height: ${PropsStyle=>PropsStyle.mqMxh};
 }
 `
 

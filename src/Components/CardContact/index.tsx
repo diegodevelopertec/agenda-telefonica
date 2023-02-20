@@ -8,15 +8,15 @@ import Edite from './../../assets/editar.png'
 import Lixeira from './../../assets/lixeira.png'
 import Fone from './../../assets/fone.png'
 import Email from './../../assets/email.png'
-import {useContactList} from './../../reducer/contact'
-
+import {useContactList} from './../../Context/contactsContext'
+import user from './../../assets/user.png'
 
 
 
 type data={
-    id?:string,
+    id?:string | number,
     nome?:string,
-    img?:string,
+    photo?:string,
     tel?:string,
     email?:string,
 
@@ -24,14 +24,14 @@ type data={
 }
 
 
-export const CardContact=({id,nome,img,tel,email}:data)=>{
-    const [contacts,dispatch] =useContactList()
+export const CardContact=({id,nome,photo,tel,email}:data)=>{
+    const {removeContact,updateContact} =useContactList()
 
 
     return <Container 
         bdRadius="5px"
-        bg="#1c3052"
-        bgHover="rgba(9,85,145,255)"
+        bg='#565572'
+        bgHover='#39394e'
         d="flex"
         name='card'
         m="5px 0"
@@ -45,7 +45,7 @@ export const CardContact=({id,nome,img,tel,email}:data)=>{
     >
         <Container  name="card-user" d="flex" flexDirection="column" flexAlign="center">
                 <Container p="10px" mb="15px" d="flex"  flexAlign="center" mqDirection="column"  >
-                    <Image bdRadius="100% " boxShadow="0 0 0 3px #eee" w="120px"  h="120px" src={img} mr='20px' />
+                    <Image bdRadius="100% " boxShadow="0 0 0 3px #eee" w="120px"  h="120px" src={`/src/assets/${photo  ? photo : user}`} mr='20px' />
                     <Text  fontSize="20px" mqM="10px 0" color="#b4b8b5">{nome}</Text>
                 </Container>
                 <Container flexJustify="start" name="card-data" d='flex' flexAlign="center" mqDJustify="center" >
@@ -59,11 +59,14 @@ export const CardContact=({id,nome,img,tel,email}:data)=>{
         </Container>
       
         <Container name="card-actions" mqM="10px 0" d="flex">
-                <Button onClick={()=>dispatch({type:'remove',payload:{id}})} cursor="pointer" w="100px" p="5px" flexJustify="center" flexAlign="center" m="0 5px" d="flex" bgHover="#cf4f36" bd="none" bdRadius="5px">
+                <Button 
+                 onClick={()=>removeContact(id!)}
+                 cursor="pointer" 
+                 w="100px" p="5px" flexJustify="center" flexAlign="center" m="0 5px" d="flex" bgHover="#cf4f36" bd="none" bdRadius="5px">
                     <Image  w="30px" h="30px" src={Lixeira} />
                     <Text fontWeight="bold"  color="#b4b8b5">Excluir</Text>
                 </Button>
-                <Button cursor="pointer" w="100px" p="5px" flexJustify="center" flexAlign="center" m="0 5px" d="flex" bgHover="#3e9e57" bd="none" bdRadius="5px">
+                <Button onClick={()=>updateContact(id!)} cursor="pointer" w="100px" p="5px" flexJustify="center" flexAlign="center" m="0 5px" d="flex" bgHover="#3e9e57" bd="none" bdRadius="5px">
                     <Image  w="30px" h="30px" src={Edite}  />
                     <Text fontWeight="bold" color="#b4b8b5">Editar</Text>
                 </Button>

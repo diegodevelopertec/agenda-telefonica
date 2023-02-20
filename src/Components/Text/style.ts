@@ -82,6 +82,14 @@ type PropsStyle={
     mqW?:string,
     mqH?:string,
 
+    minW?:string,
+    minH?:string,
+    maxW?:string,
+    maxH?:string,
+    mqMxw?:string,
+    mqMxh?:string,
+    mqMnw?:string,
+    mqMnh?:string
 
 
 }
@@ -147,6 +155,10 @@ bottom: ${PropsStyle=>PropsStyle.psBottom};
     margin: ${PropsStyle=>PropsStyle.mqM};
     padding: ${PropsStyle=>PropsStyle.mqP};
     flex-direction: ${PropsStyle=>PropsStyle.mqDirection};
+    min-width: ${PropsStyle=>PropsStyle.mqMnw};
+    min-height: ${PropsStyle=>PropsStyle.mqMnh};
+    max-width: ${PropsStyle=>PropsStyle.mqMxw};
+    max-height: ${PropsStyle=>PropsStyle.mqMxh};
 }
 `
 

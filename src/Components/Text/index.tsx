@@ -63,6 +63,13 @@ export const Text=({...propsElement}:PropsComponents)=>{
         mqDAlign={propsElement.mqDAlign}
         mqDJustify={propsElement.mqDJustify}
         mqDirection={propsElement.mqDirection}
+
+        mqMnh={propsElement.mqMnh}
+        mqMnw={propsElement.mqMnw}
+        minH={propsElement.minH}
+        minW={propsElement.minW}
+        maxH={propsElement.maxH}
+        maxW={propsElement.maxW}
         >
           {propsElement.children}
     
