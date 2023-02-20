@@ -10,7 +10,7 @@ import Fone from './../../assets/fone.png'
 import Email from './../../assets/email.png'
 import {useContactList} from './../../Context/contactsContext'
 import user from './../../assets/user.png'
-
+import { useNavigate } from "react-router-dom";
 
 
 type data={
@@ -26,7 +26,10 @@ type data={
 
 export const CardContact=({id,nome,photo,tel,email}:data)=>{
     const {removeContact,updateContact} =useContactList()
-
+    const navigate=useNavigate()
+    const setUpdate=(id:any)=>{
+        navigate(`/contact/${id}`)
+    }
 
     return <Container 
         bdRadius="5px"
@@ -66,7 +69,7 @@ export const CardContact=({id,nome,photo,tel,email}:data)=>{
                     <Image  w="30px" h="30px" src={Lixeira} />
                     <Text fontWeight="bold"  color="#b4b8b5">Excluir</Text>
                 </Button>
-                <Button onClick={()=>updateContact(id!)} cursor="pointer" w="100px" p="5px" flexJustify="center" flexAlign="center" m="0 5px" d="flex" bgHover="#3e9e57" bd="none" bdRadius="5px">
+                <Button onClick={()=>setUpdate(id)} cursor="pointer" w="100px" p="5px" flexJustify="center" flexAlign="center" m="0 5px" d="flex" bgHover="#3e9e57" bd="none" bdRadius="5px">
                     <Image  w="30px" h="30px" src={Edite}  />
                     <Text fontWeight="bold" color="#b4b8b5">Editar</Text>
                 </Button>

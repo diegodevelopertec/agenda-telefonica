@@ -12,6 +12,7 @@ export const Contacts=()=>{
     const {contacts}=useContactList()
 
 
+   
 
     return <Container w="100%"  bg='#3f3e5b' h="100%">
         <Container  m="52px 0 " >
@@ -27,6 +28,6 @@ export const Contacts=()=>{
                   </Container>
             }
         </Container>
-       <Button bd="none" onClick={()=>navigate('newcontact')} ps="fixed" psTop="50vh" cursor="pointer" psRight="4px" w="70px" fontSize="30px" bdRadius="100%" h="70px" color="#eeee" bg="#574f9e" > + </Button>
+       <Button bd="none"  onClick={()=>navigate('newcontact')} ps="fixed" psTop="70vh" cursor="pointer" psRight="6px" w="70px" fontSize="30px" bdRadius="100%" h="70px" color="#eeee" bg="#574f9e" > + </Button>
     </Container>
 }

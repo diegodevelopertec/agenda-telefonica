@@ -6,7 +6,7 @@ import { Text } from './Components/Text'
 import { Title } from './Components/Title'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { UpdateContact } from './Pages/UpdateContact'
 
 
 const App=()=>{
@@ -18,6 +18,7 @@ const App=()=>{
           <Routes>
             <Route path='' element={<Contacts/>} />
             <Route path='/newcontact' element={<NewContact />} />
+            <Route path='/contact/:id' element={<UpdateContact />} />
         </Routes>
       </BrowserRouter>
     </Container>

@@ -35,10 +35,15 @@ export const ContactsProvider=({children}:Props)=>{
         setContacts(contacts.filter((contact) => contact.id !== id));
         toast.success('contato deletado!');
     }
-
-    const updateContact=(id:string | number)=>{
         
           
+    const updateContact=(data:ContactType)=>{
+      let contact=contacts.find(item=>item.id === data.id)
+        contact!.email=data.email
+        contact!.name=data.name
+        contact!.tel=data.tel
+        
+      
     }
 
     return <ContactList.Provider value={{contacts,addContact,removeContact,updateContact}}>

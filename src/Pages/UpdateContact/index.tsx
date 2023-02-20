@@ -1,5 +1,6 @@
 
 import { Container } from "../../Components/Container"
+import { useParams } from "react-router-dom"
 import { Input } from "../../Components/Input"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
@@ -10,26 +11,33 @@ import { toast } from "react-toastify"
 import { Title } from "../../Components/Title"
 
 interface FormData{
-    id:string,
-    photo:string,
-    nome:string,
-    email:string,
-    tel:string
+    id:string | any,
+    photo:string | any,
+    nome:string | any,
+    email:string | any,
+    tel:string | any
 }
 
 
-const initialValues: FormData = {
-    id:'',
-    photo:'',
-    nome:'',
-    email:'',
-    tel:''
-  };
 
 
-export const NewContact:React.FC=()=>{
+
+export const UpdateContact:React.FC=()=>{
+  const params=useParams()
   const navigate=useNavigate()
-    const {contacts,addContact}=useContactList()
+  const {contacts,updateContact}=useContactList()
+  let contactId=contacts.find(item=>item.id === params.id)
+
+
+console.log(contactId)
+    const initialValues: FormData = {
+      id:contactId?.id,
+      photo:contactId?.photo,
+      nome:contactId?.name,
+      email:contactId?.email,
+      tel:contactId?.tel
+    };
+
     const [formData, setFormData] = useState<FormData>(initialValues);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -37,27 +45,27 @@ export const NewContact:React.FC=()=>{
 
       const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-       if(formData.nome != '' && formData.email != '' && formData.tel != ''  ){
-            console.log(formData);
-            console.log(contacts);
-            
-            addContact({
+        if(formData.nome != '' && formData.email != '' && formData.tel != ''  ){
+              
+            let data={
+              id:contactId!.id,
               photo:formData.photo,
-              email:formData.email,
-              tel:formData.tel,
               name:formData.nome,
-              id:uuid()
-            })
-
+              email:formData.email,
+              tel:formData.tel
+            }
+            console.log(data);
+            updateContact(data)
+            toast.success('contato atualizado')
             navigate('/')
-       }else{
+        }else{
           toast.error('Preencha todos os campos')
-       }
+        }
       };
 
     return <Container w="100vw"  m='100px 0' d="flex"flexDirection="column" mqP="5px" p="12px 30px" pl="30px"  bdRadius="10px" >
               <Container m="30px 0" d="flex" flexJustify="center">
-                <Title>Novo Contato</Title>
+                <Title>Atualizar Contato</Title>
               </Container>
               <Container d="flex" w="100%"  flexJustify="center"  h="auto">
                 <Form mqM="30px 0" p="65px 30px" bdRadius="5px" m="15px 0" mqW="100%" w="650px" boxShadow="0 0 15px #334691" 
@@ -101,7 +109,7 @@ export const NewContact:React.FC=()=>{
                       placeholder="Digite um Telefone"
                     />
                    <Container w="100%" d="flex" flexJustify="center">
-                     <Input w="270px" m="35px 0" cursor="pointer" fontSize="15px" type="submit" p="17px" value="Salvar" bg="#194426" color="white" bgHover="#50c350" bd="none" bdRadius="5px" />
+                     <Input w="270px" m="35px 0" cursor="pointer" fontSize="15px" type="submit" p="17px" value="Atualizar" bg="#194426" color="white" bgHover="#50c350" bd="none" bdRadius="5px" />
                    </Container>
 
                 </Form>
